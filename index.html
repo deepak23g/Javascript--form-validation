@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating a Form</title>
+
+    <style>
+        h4 {
+            color: royalblue;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 500;
+            font-style: oblique;
+        }
+
+        input {
+
+            border: 2px solid orange;
+            border-radius: 5px;
+            padding: 3px;
+        }
+
+
+        h2 {
+
+            color: red;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 500;
+            font-style: oblique;
+            text-decoration: underline;
+            
+
+        }
+
+        label {
+
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: 300;
+            font-style: oblique;
+            padding: 2px;
+            color: rebeccapurple;
+        }
+
+        .btnSubmit {
+
+            border: 5px solid cyan;
+            border-radius: 7px;
+            padding: 5px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-weight: 300;
+            font-style: oblique;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Creating And Validating Javascript Form</h2>
+
+    <form>
+        <h4> Enter Name</h4>
+        <input type="text" id="name" autocomplete="off" placeholder="Enter your Full Name" />
+        <h4> Enter Email Id</h4>
+        <input type="text" id="emailId" autocomplete="off" placeholder="Enter your Email id" />
+        <h4>Enter Password</h4>
+        <input type="password" id="password" placeholder="Enter your Password" /></br></br>
+
+        <h4>Gender</h4>
+        <input type="radio" id="m-gender" name="gender" value="Male">
+        <label for="mGender">Male</label><br>
+        <input type="radio" id="f-gender" name="gender" value="Female">
+        <label for="fGender">Female</label><br> </br></br>
+
+        <input type="button" class="btnSubmit" id="submitBtn" value="Submit Details" />
+    </form>
+
+    <script>
+        var btn1 = document.getElementById("submitBtn");
+        btn1.addEventListener("click", submitUserInfo);
+
+        function submitUserInfo() {
+
+            var letters_val = /^[A-Za-z]+$/;
+            var email_val = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+            var name1 = document.getElementById("name").value;
+            var email1 = document.getElementById("emailId").value;
+            var pswd1 = document.getElementById("password").value;
+
+
+            if (name1 == '' || email1 == '' || pswd1 == '') {
+                alert("Please enter all the details correctly");
+            }
+            else if (letters_val.test(name1) == false) {
+                alert("Please enter the name correctly");
+            }
+            else if (email_val.test(email1) == false) {
+                alert("Please enter  valid Email Id");
+            }
+            else if (pswd1.length < 6) {
+                alert("Password too Short !!!");
+            }
+            else if (document.getElementById('m-gender').checked == false && document.getElementById('f-gender').checked == false) {
+                alert("Please select the Gender");
+            }
+            else {
+                alert("Success !! Your Details Submitted Successfully .")
+
+            }
+        }
+    </script>
+</body>
+
+</html>
